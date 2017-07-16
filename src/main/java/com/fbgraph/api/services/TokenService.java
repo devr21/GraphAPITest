@@ -74,7 +74,7 @@ public class TokenService extends BaseTokenService{
 	private List<RequestParam> getParamList(String code,User user) {
 		List<RequestParam> params = new ArrayList<RequestParam>();
 		params.add(new RequestParam("code",code));
-		params.add(new RequestParam("redirect_uri", REDIRECT_URI+"/"+user.getUserId().toString()));
+		params.add(new RequestParam("redirect_uri", REDIRECT_URI);
 		params.add(new RequestParam("client_id", clientId));
 		params.add(new RequestParam("client_secret", clientSecret));
 		return params;
