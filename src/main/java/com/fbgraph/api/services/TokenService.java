@@ -35,7 +35,7 @@ public class TokenService extends BaseTokenService{
 	protected String facebookOauthURL;
 	protected String clientId;
 	protected String clientSecret;
-	protected final String REDIRECT_URI = "https://daevgraphapitest.herokuapp.com/service/result?scope=user_friends,email,user_birthday,user_education_history,user_photos,user_relationships,user_about_me";
+	protected final String REDIRECT_URI = "http://daevgraphapitest.herokuapp.com/service/result?scope=user_friends,email,user_birthday,user_education_history,user_photos,user_relationships,user_about_me";
 	
 	@PostConstruct
 	public void init(){
