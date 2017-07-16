@@ -2,9 +2,15 @@ package com.fbgraph.api.services;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 
 import com.fbgraph.api.exceptions.AccessTokenExpiredException;
 import com.fbgraph.api.exceptions.InvalidTokenException;
@@ -16,10 +22,25 @@ import com.fbgraph.api.model.User;
 
 @Named
 @Singleton
+@Configuration
+@PropertySource(value={"classpath:graphapitest.properties"})
 public class TokenService extends BaseTokenService{
 
 	@Inject
+	private Environment env;
+	@Inject
 	private HttpService httpService;
+	protected String facebookOauthURL;
+	protected String clientId;
+	protected String clientSecret;
+	protected final String REDIRECT_URI = "/service/receivetoken";
+	
+	@PostConstruct
+	public void init(){
+		facebookOauthURL = env.getProperty("facebookOauthURL");
+		clientId = env.getProperty("clientId");
+		clientSecret = env.getProperty("clientSecret");
+	}
 	
 	public String getToken(User user) throws TokenException {
 		
