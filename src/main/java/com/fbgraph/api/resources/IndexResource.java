@@ -55,14 +55,16 @@ public class IndexResource{
 	@GET
 	@Path("/result")
     @Produces("text/html")
-    public Response result(@QueryParam("code") String code,
+	@Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+    public Response result(Token token,@QueryParam("code") String code,
     		@QueryParam("error") String error,@QueryParam("error_code") int errorCode,
     		@QueryParam("error_description") String errorDescription,@QueryParam("error_reason") String errorReason) {
-		
+		if(token != null)
+			return Response.ok(token.getAccess_token()).build();
 		if(error == null)	{
 			User user = new User();
 			user = tokenService.getAccessTokenFromFB(code,user);
-			return Response.ok(user.getToken().getAccessToken()).build();
+			return Response.ok(user.getToken().getAccess_token()).build();
 		}
 		else{
 			return Response.ok(new Viewable("/denied")).build();

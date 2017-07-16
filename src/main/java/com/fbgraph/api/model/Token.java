@@ -4,35 +4,39 @@ import java.util.Date;
 
 public class Token {
 
-	private String accessToken;
-	private String tokenType;
-	private Date expiryDate;
+	private String access_token;
+	private String token_type;
+	private Date expires_in;
 	
 	public Token(String accessToken, String tokenType){
-		this.accessToken = accessToken;
-		this.tokenType = tokenType;
+		this.access_token = accessToken;
+		this.token_type = tokenType;
 		
 	}
-	
-	public String getAccessToken() {
-		return accessToken;
+
+	public String getAccess_token() {
+		return access_token;
 	}
-	public void setAccessToken(String accessToken) {
-		this.accessToken = accessToken;
+
+	public void setAccess_token(String access_token) {
+		this.access_token = access_token;
 	}
-	public String getTokenType() {
-		return tokenType;
+
+	public String getToken_type() {
+		return token_type;
 	}
-	public void setTokenType(String tokenType) {
-		this.tokenType = tokenType;
+
+	public void setToken_type(String token_type) {
+		this.token_type = token_type;
 	}
-	public Date getExpiryDate() {
-		return expiryDate;
+
+	public Date getExpires_in() {
+		return expires_in;
 	}
-	public void setExpiryDate(Date expiryDate) {
-		this.expiryDate = expiryDate;
+
+	public void setExpires_in(Date expires_in) {
+		this.expires_in = expires_in;
 	}
-	
 	
 	
 }

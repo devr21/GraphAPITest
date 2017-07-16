@@ -7,7 +7,7 @@ import com.fbgraph.api.model.Token;
 public abstract class BaseTokenService implements TokenService{
 
 	protected boolean isTokenValid(Token token){
-		String accessToken = token.getAccessToken();
+		String accessToken = token.getAccess_token();
 		return accessToken.isEmpty() || accessToken == null?false:true;
 	}
 	

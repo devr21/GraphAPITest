@@ -35,7 +35,7 @@ public class TokenService extends BaseTokenService{
 	protected String facebookOauthURL;
 	protected String clientId;
 	protected String clientSecret;
-	protected final String REDIRECT_URI = "https://daevgraphapitest.herokuapp.com/service/receivetoken";
+	protected final String REDIRECT_URI = "https://daevgraphapitest.herokuapp.com/service/result?scope=user_friends,email,user_birthday,user_education_history,user_photos,user_relationships,user_about_me";
 	
 	@PostConstruct
 	public void init(){
@@ -47,8 +47,8 @@ public class TokenService extends BaseTokenService{
 	public String getToken(User user) throws TokenException {
 		
 		if(isTokenValid(user.getToken()) || !isTokenExpired(user.getToken()))
-			return user.getToken().getAccessToken();
-		else if(isTokenExpired()) throw new AccessTokenExpiredException("Token has expired on "+user.getToken().getExpiryDate());
+			return user.getToken().getAccess_token();
+		else if(isTokenExpired()) throw new AccessTokenExpiredException("Token has expired on "+user.getToken().getExpires_in());
 		else throw new InvalidTokenException("Token is Invalid");
 	}
 
