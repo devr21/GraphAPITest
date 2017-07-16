@@ -21,6 +21,7 @@ import com.fbgraph.api.interfaces.UserService;
 import com.fbgraph.api.model.Token;
 import com.fbgraph.api.model.User;
 
+
 @Component
 @Path("/")	
 public class IndexResource{
@@ -58,12 +59,13 @@ public class IndexResource{
     		@QueryParam("error") String error,@QueryParam("error_code") int errorCode,
     		@QueryParam("error_description") String errorDescription,@QueryParam("error_reason") String errorReason) {
 		
-		if(error.isEmpty())	
-			return Response.ok(new Viewable("/denied")).build();
-		else{
+		if(error == null)	{
 			User user = new User();
 			tokenService.getAccessTokenFromFB(code,user);
 			return Response.ok(new Viewable("/success")).build();
+		}
+		else{
+			return Response.ok(new Viewable("/denied")).build();
 		}
     }
 	
