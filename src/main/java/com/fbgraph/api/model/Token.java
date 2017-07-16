@@ -8,10 +8,10 @@ public class Token {
 	private String tokenType;
 	private Date expiryDate;
 	
-	public Token(String accessToken, String tokenType, Date expiryDate){
+	public Token(String accessToken, String tokenType){
 		this.accessToken = accessToken;
 		this.tokenType = tokenType;
-		this.expiryDate = expiryDate;
+		
 	}
 	
 	public String getAccessToken() {

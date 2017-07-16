@@ -6,7 +6,7 @@ import com.fbgraph.api.model.User;
 public interface TokenService{
 
 	String getToken(User user) throws TokenException;
-	void getAccessTokenFromFB(String code,User user);
+	User getAccessTokenFromFB(String code,User user);
 	void renewToken();
 	
 	

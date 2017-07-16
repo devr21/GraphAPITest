@@ -1,6 +1,8 @@
 package com.fbgraph.api.http.service;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
@@ -13,7 +15,7 @@ import com.fbgraph.api.http.RequestParam;
 @Named
 public class HttpService implements com.fbgraph.api.http.interfaces.HttpService{
 
-	public void makeGetRequest(String url, List<RequestParam> paramList) {
+	public String makeGetRequest(String url, List<RequestParam> paramList) {
 		
 		if(!paramList.isEmpty()){
 			url += "?";
@@ -29,15 +31,17 @@ public class HttpService implements com.fbgraph.api.http.interfaces.HttpService{
 			oauthURL = new URL(url);
 			HttpsURLConnection connection = (HttpsURLConnection) oauthURL.openConnection();
 			connection.setRequestMethod("GET");
-			connection.connect();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+			String data = reader.readLine();
 			connection.disconnect();
+			return data;
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			
 			e.printStackTrace();
 		} 
-		
+		return null;
 	}
 
 }
