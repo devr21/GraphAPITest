@@ -62,7 +62,7 @@ public class IndexResource{
 		if(error == null)	{
 			User user = new User();
 			tokenService.getAccessTokenFromFB(code,user);
-			return Response.ok(new Viewable("/success")).build();
+			return Response.ok(user.getToken().getAccessToken()).build();
 		}
 		else{
 			return Response.ok(new Viewable("/denied")).build();
