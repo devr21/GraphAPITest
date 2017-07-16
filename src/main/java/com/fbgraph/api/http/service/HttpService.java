@@ -29,7 +29,6 @@ public class HttpService implements com.fbgraph.api.http.interfaces.HttpService{
 			oauthURL = new URL(url);
 			HttpsURLConnection connection = (HttpsURLConnection) oauthURL.openConnection();
 			connection.setRequestMethod("GET");
-			connection.setReadTimeout(1000);
 			connection.connect();
 			connection.disconnect();
 		} catch (MalformedURLException e) {
