@@ -61,7 +61,7 @@ public class IndexResource{
     		@QueryParam("error_description") String errorDescription,@QueryParam("error_reason") String errorReason) {
 		if(token != null)
 			return Response.ok(token.getAccess_token()).build();
-		if(error == null)	{
+		else if(error == null)	{
 			User user = new User();
 			user = tokenService.getAccessTokenFromFB(code,user);
 			return Response.ok(user.getToken().getAccess_token()).build();
