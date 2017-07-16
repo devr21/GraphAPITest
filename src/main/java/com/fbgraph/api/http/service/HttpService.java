@@ -23,7 +23,7 @@ public class HttpService implements com.fbgraph.api.http.interfaces.HttpService{
 				url += param.getParamName() + "=" + param.getParamValue() + "&";
 			}
 			
-			url = url.substring(0, url.lastIndexOf("&")-1);
+			url = url.substring(0, url.lastIndexOf("&"));
 			System.out.println(url);
 		}
 		URL oauthURL;
