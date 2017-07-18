@@ -30,12 +30,15 @@ public class TokenService extends BaseTokenService{
 
 	@Inject
 	private Environment env;
+	
 	@Inject
 	private HttpService httpService;
+	
 	protected String facebookOauthURL;
 	protected String clientId;
 	protected String clientSecret;
 	protected final String REDIRECT_URI = "http://localhost:8080/GraphAPITest/service/result/";
+	
 	
 	@PostConstruct
 	public void init(){
@@ -62,12 +65,12 @@ public class TokenService extends BaseTokenService{
 	}
 	
 	private Token mapJsonResponse(String response) {
+		
 		Token token = null;
 		if(response != null || !response.isEmpty()){
 			JSONObject object = new JSONObject(response);
 			token = new Token(object.getString("access_token").toString(),object.getString("token_type").toString());
 		}
-		System.out.println("TOKEN TOKEN TOKEN TOKEN: "+token);
 		return token;
 	}
 
