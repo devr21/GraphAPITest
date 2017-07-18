@@ -7,15 +7,16 @@ import java.util.UUID;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
+
 import com.fbgraph.api.exceptions.NoSuchUserException;
 import com.fbgraph.api.exceptions.UserException;
-import com.fbgraph.api.interfaces.UserService;
+import com.fbgraph.api.interfaces.UserDB;
 import com.fbgraph.api.model.Token;
 import com.fbgraph.api.model.User;
 
 @Named
 @Singleton
-public class UserListDBService implements UserService{
+public class UserListDBService implements UserDB{
 
 	private Map<UUID,User> users = new HashMap<UUID,User>();
 
@@ -41,7 +42,5 @@ public class UserListDBService implements UserService{
 		user.setToken(token);
 		users.put(userId, user);
 	}
-	
-	
 	
 }

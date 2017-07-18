@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 
+import com.fbgraph.api.enums.GraphAPIVersion;
 import com.fbgraph.api.exceptions.AccessTokenExpiredException;
 import com.fbgraph.api.exceptions.InvalidTokenException;
 import com.fbgraph.api.exceptions.TokenException;
@@ -34,7 +35,7 @@ public class TokenService extends BaseTokenService{
 	@Inject
 	private HttpService httpService;
 	
-	protected String facebookOauthURL;
+	protected String graphAPI;
 	protected String clientId;
 	protected String clientSecret;
 	protected final String REDIRECT_URI = "http://localhost:8080/GraphAPITest/service/result/";
@@ -42,7 +43,7 @@ public class TokenService extends BaseTokenService{
 	
 	@PostConstruct
 	public void init(){
-		facebookOauthURL = env.getProperty("facebookOauthURL");
+		graphAPI = env.getProperty("graphAPI");
 		clientId = env.getProperty("clientId");
 		clientSecret = env.getProperty("clientSecret");
 	}
@@ -55,15 +56,24 @@ public class TokenService extends BaseTokenService{
 		else throw new InvalidTokenException("Token is Invalid");
 	}
 
+	public String getGraphAPIURI(){
+		return graphAPI;
+	}
+	
 	public User getAccessTokenFromFB(String code,User user) {
 		
-		String response = httpService.makeGetRequest(facebookOauthURL, getParamList(code,user));
+		String response = httpService.makeGetRequest(getFBOauthURI(graphAPI), getParamList(code,user));
 		
 		Token token = mapJsonResponse(response);
 		user.setToken(token);
 		return user;
 	}
 	
+	private String getFBOauthURI(String graphAPI) {
+		
+		return graphAPI+GraphAPIVersion.VERSION_2_9.name()+"/oauth/access_token";
+	}
+
 	private Token mapJsonResponse(String response) {
 		
 		Token token = null;

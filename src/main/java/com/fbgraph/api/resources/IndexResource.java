@@ -1,13 +1,12 @@
 package com.fbgraph.api.resources;
 
-import java.util.UUID;
+
+import java.util.HashMap;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
@@ -17,7 +16,7 @@ import org.glassfish.jersey.server.mvc.Viewable;
 import org.springframework.stereotype.Component;
 
 import com.fbgraph.api.interfaces.TokenService;
-import com.fbgraph.api.interfaces.UserService;
+import com.fbgraph.api.interfaces.UserDB;
 import com.fbgraph.api.model.Token;
 import com.fbgraph.api.model.User;
 
@@ -31,7 +30,7 @@ public class IndexResource{
 	private TokenService tokenService; 
 	
 	@Inject
-	private UserService userService;
+	private UserDB userService;
 	
 	@Path("/homie")
 	@GET
@@ -63,7 +62,9 @@ public class IndexResource{
 		if(error == null)	{
 			User user = new User();
 			user = tokenService.getAccessTokenFromFB(code,user);
-			return Response.ok(user.getToken().getAccess_token()).build();
+			HashMap<String, User> model = new HashMap<String, User>();
+			model.put("user",user);
+			return Response.ok(new Viewable("/success",model)).build();
 		}
 		else{
 			return Response.ok(new Viewable("/denied")).build();

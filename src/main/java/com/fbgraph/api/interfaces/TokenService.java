@@ -8,6 +8,6 @@ public interface TokenService{
 	String getToken(User user) throws TokenException;
 	User getAccessTokenFromFB(String code,User user);
 	void renewToken();
-	
+	public String getGraphAPIURI();
 	
 }

@@ -7,7 +7,7 @@ import com.fbgraph.api.exceptions.UserException;
 import com.fbgraph.api.model.Token;
 import com.fbgraph.api.model.User;
 
-public interface UserService {
+public interface UserDB {
 
 	User getUser(UUID userId) throws NoSuchUserException;
 	void addUser(User user) throws UserException;	

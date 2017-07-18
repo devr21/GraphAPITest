@@ -7,12 +7,17 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import javax.net.ssl.HttpsURLConnection;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
 import com.fbgraph.api.http.RequestParam;
 
 @Named
+@Configuration
 public class HttpService implements com.fbgraph.api.http.interfaces.HttpService{
 
 	public String makeGetRequest(String url, List<RequestParam> paramList) {
@@ -24,7 +29,6 @@ public class HttpService implements com.fbgraph.api.http.interfaces.HttpService{
 			}
 			
 			url = url.substring(0, url.lastIndexOf("&"));
-			System.out.println(url);
 		}
 		URL oauthURL;
 		try {

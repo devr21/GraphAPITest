@@ -6,7 +6,16 @@ public class User {
 
 	private Token token;
 	private UUID userId;
+	private String dataFromFb;
 	
+	public String getDataFromFb() {
+		return dataFromFb;
+	}
+
+	public void setDataFromFb(String dataFromFb) {
+		this.dataFromFb = dataFromFb;
+	}
+
 	public User(){
 		this.userId = UUID.randomUUID();
 	}
