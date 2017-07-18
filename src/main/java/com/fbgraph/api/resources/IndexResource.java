@@ -59,9 +59,8 @@ public class IndexResource{
     public Response result(Token token,@QueryParam("code") String code,
     		@QueryParam("error") String error,@QueryParam("error_code") int errorCode,
     		@QueryParam("error_description") String errorDescription,@QueryParam("error_reason") String errorReason) {
-		if(token != null)
-			return Response.ok(token.getAccess_token()).build();
-		else if(error == null)	{
+	
+		if(error == null)	{
 			User user = new User();
 			user = tokenService.getAccessTokenFromFB(code,user);
 			return Response.ok(user.getToken().getAccess_token()).build();
@@ -70,14 +69,5 @@ public class IndexResource{
 			return Response.ok(new Viewable("/denied")).build();
 		}
     }
-	
-	@POST
-	@Path("/receivetoken/{userid}/")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces("text/html")
-	public Response receiveToken(Token token,@PathParam("userid") String userId){
-		userService.setToken(UUID.fromString(userId),token);
-		return Response.ok(new Viewable("/home")).build();
-	}
 	
 }
