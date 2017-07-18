@@ -71,9 +71,9 @@ public class TokenService extends BaseTokenService{
 	
 	private String getFBOauthURI(String graphAPI) {
 		
-		return graphAPI+GraphAPIVersion.VERSION_2_9.name()+"/oauth/access_token";
+		return graphAPI+GraphAPIVersion.VERSION_2_9.getVersion()+"/oauth/access_token";
 	}
-
+	
 	private Token mapJsonResponse(String response) {
 		
 		Token token = null;
