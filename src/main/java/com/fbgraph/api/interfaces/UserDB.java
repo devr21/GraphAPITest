@@ -9,8 +9,8 @@ import com.fbgraph.api.model.User;
 
 public interface UserDB {
 
-	User getUser(UUID userId) throws NoSuchUserException;
+	User getUser(String userId) throws NoSuchUserException;
 	void addUser(User user) throws UserException;	
-	void setToken(UUID userId,Token token);
+	void setToken(String userId,Token token);
 	
 }

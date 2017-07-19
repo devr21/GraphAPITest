@@ -9,6 +9,7 @@ import javax.ws.rs.core.Response;
 import org.springframework.stereotype.Component;
 
 import com.fbgraph.api.exceptions.NoSuchUserException;
+import com.fbgraph.api.exceptions.TokenException;
 import com.fbgraph.api.interfaces.UserFbService;
 
 @Path("/user")
@@ -21,8 +22,8 @@ public class UserResource {
 	
 	@Path("/fetchfromfb/{userId}")
 	@GET
-	public Response getUserDataFromFB(@PathParam("userId")String userId) throws NoSuchUserException{
-		
+	public Response getUserDataFromFB(@PathParam("userId")String userId) throws NoSuchUserException, TokenException{
+		System.out.println("USERID USERID USERID USERID: "+userId);
 		return Response.ok(userService.fetchUserDataFromFB(userId)).build();
 	}
 	

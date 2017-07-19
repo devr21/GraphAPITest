@@ -5,7 +5,7 @@
 <title>Redirecting</title>
 </head>
 <body>
-<p><a href="https://www.facebook.com/v2.9/dialog/oauth?client_id=1634658199880318&scope=user_friends,email,user_birthday,user_education_history,user_photos,user_relationships,user_about_me&redirect_uri=http://localhost:8080/GraphAPITest/service/result/">Redirect</a></p>
+<p><a href="https://www.facebook.com/v2.9/dialog/oauth?client_id=1634658199880318&scope=user_friends,email,user_birthday,user_education_history,user_photos,user_relationships,user_about_me&redirect_uri=http://localhost:8080/GraphAPITest/service/result/">Redirecting</a></p>
 
 
 </body>

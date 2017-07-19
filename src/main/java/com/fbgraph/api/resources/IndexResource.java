@@ -15,6 +15,7 @@ import javax.ws.rs.core.Response;
 import org.glassfish.jersey.server.mvc.Viewable;
 import org.springframework.stereotype.Component;
 
+import com.fbgraph.api.exceptions.UserException;
 import com.fbgraph.api.interfaces.TokenService;
 import com.fbgraph.api.interfaces.UserDB;
 import com.fbgraph.api.model.Token;
@@ -57,13 +58,15 @@ public class IndexResource{
 	@Consumes({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     public Response result(Token token,@QueryParam("code") String code,
     		@QueryParam("error") String error,@QueryParam("error_code") int errorCode,
-    		@QueryParam("error_description") String errorDescription,@QueryParam("error_reason") String errorReason) {
+    		@QueryParam("error_description") String errorDescription,@QueryParam("error_reason") String errorReason) throws UserException {
 	
 		if(error == null)	{
 			User user = new User();
 			user = tokenService.getAccessTokenFromFB(code,user);
 			HashMap<String, User> model = new HashMap<String, User>();
 			model.put("user",user);
+			System.out.println("USERID USERID USERID USERID: "+user.getUserId());
+			userService.addUser(user);
 			return Response.ok(new Viewable("/success",model)).build();
 		}
 		else{
