@@ -33,7 +33,7 @@ public class UserService implements UserFbService{
 	public User fetchUserDataFromFB(String userId) throws NoSuchUserException, TokenException {
 		
 		User user = usersDB.getUser(userId);
-		user.setDataFromFb(httpService.makeGetRequest(tokenService.getGraphAPIURI()+GraphAPIVersion.VERSION_2_9+"/me", getParams(user)));
+		user.setDataFromFb(httpService.makeGetRequest(tokenService.getGraphAPIURI()+GraphAPIVersion.VERSION_2_9.getVersion()+"/me", getParams(user)));
 		
 		return user;
 	}
@@ -42,6 +42,8 @@ public class UserService implements UserFbService{
 		List<RequestParam> params = new ArrayList<RequestParam>();
 		RequestParam param = new RequestParam("fields", "id,name,birthday,cover,email,first_name,education,last_name,picture,photos,friends,relationship_status");
 		RequestParam param1 = new RequestParam("access_token", tokenService.getToken(user));
+		params.add(param1);
+		params.add(param);
 		return params;
 	}
 

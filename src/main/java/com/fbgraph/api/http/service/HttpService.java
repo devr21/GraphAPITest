@@ -31,6 +31,7 @@ public class HttpService implements com.fbgraph.api.http.interfaces.HttpService{
 			url = url.substring(0, url.lastIndexOf("&"));
 		}
 		URL oauthURL;
+		System.out.println("URL URL URL: "+url);
 		try {
 			oauthURL = new URL(url);
 			HttpsURLConnection connection = (HttpsURLConnection) oauthURL.openConnection();
