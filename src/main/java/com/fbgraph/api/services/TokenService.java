@@ -38,7 +38,7 @@ public class TokenService extends BaseTokenService{
 	protected String graphAPI;
 	protected String clientId;
 	protected String clientSecret;
-	protected final String REDIRECT_URI = "http://localhost:8080/GraphAPITest/service/result/";
+	protected final String REDIRECT_URI = "https://daevgraphapitest.herokuapp.com/service/result/";
 	
 	
 	@PostConstruct
